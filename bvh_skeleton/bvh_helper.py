@@ -72,6 +72,8 @@ def write_bvh(output_file, header, channels, frame_rate=30):
         f.write('MOTION\n')
         f.write(f'Frames: {len(channels)}\n')
         f.write(f'Frame Time: {1 / frame_rate}\n')
-
+        tpose = '0 '*51  # 增加初始的tpose
+        tpose = tpose[:-1]+'\n'
+        f.write(tpose)
         for channel in channels:
             f.write(' '.join([f'{element}' for element in channel]) + '\n')
